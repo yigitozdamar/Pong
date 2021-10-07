@@ -30,11 +30,6 @@ public class Ball : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("PlayerGoal"))
@@ -43,7 +38,7 @@ public class Ball : MonoBehaviour
             playerScoreText.text = "Score: " + playerScore;
             DataManager.Instance.score++;
             ResetBall();
-            Invoke("GoBall", 2.0f);
+            Invoke("RandomizeBallPositionAtStart", 2.0f);
 
         }
         else if (collision.gameObject.CompareTag("EnemyGoal"))
@@ -51,17 +46,17 @@ public class Ball : MonoBehaviour
             enemyScore++;
             enemyScoreText.text = "Score: " + enemyScore;
             ResetBall();
-            Invoke("GoBall", 2.0f);
+            Invoke("RandomizeBallPositionAtStart", 2.0f);
             
         }
 
     }
-    void GoBall()
+    void RandomizeBallPositionAtStart()
     {
         float rand = Random.Range(0, 2);
         if (rand < 1)
         {
-            ballRb.AddForce(new Vector3(40,1, -40),ForceMode.Impulse);
+            ballRb.AddForce(new Vector3(40,1, -40),ForceMode.Impulse);            
         }
         else
         {
