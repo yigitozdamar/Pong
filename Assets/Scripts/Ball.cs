@@ -19,7 +19,7 @@ public class Ball : MonoBehaviour
         ballRb = GetComponent<Rigidbody>();
         transform.position = ballRb.position;
         //Cursor.visible = false;    
-        Invoke("GoBall", 3.0f);        
+        Invoke("RandomizeBallPositionAtStart", 3.0f);        
         playerScore = 0;
         enemyScore = 0;
 
