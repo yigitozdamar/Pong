@@ -3508,3 +3508,4 @@ Received Import Request.
 Start importing Assets/TextMesh Pro using Guid(f54d1bd14bd3ca042bd867b519fee8cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '16b4cbde9565bf190136f1148817e1ea') in 0.011448 seconds 
   Import took 0.015921 seconds .
 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
