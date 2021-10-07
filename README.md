@@ -1,2 +1,2 @@
 # Pong
- First Game Try
+ First Try
