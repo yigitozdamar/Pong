@@ -8,9 +8,27 @@ using TMPro;
 public class DataManager : MonoBehaviour
 {
     public static DataManager Instance;
-    public GameObject bestScoreText;
-    public int score, bestScore;
-    
+    public int BestScore {
+        get { return PlayerPrefs.GetInt("HighScore", 0); }
+        set { PlayerPrefs.SetInt("HighScore", value);
+            PlayerPrefs.Save(); } 
+    }
+
+    private int playerScore;
+    private int enemyScore;
+    public int PlayerScore { get { return playerScore; } 
+        set {
+            playerScore = value;
+            if (BestScore < playerScore)
+            {
+                BestScore = playerScore;
+
+            }
+            
+        } }
+
+    public int EnemyScore { get { return enemyScore; } set { enemyScore = value; } }
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -20,21 +38,12 @@ public class DataManager : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            DestroyImmediate(gameObject);
+            return;
         }
         DontDestroyOnLoad(gameObject);
-
-
-        bestScoreText.GetComponent<TextMeshProUGUI>().text = score.ToString();
+                     
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (bestScore< score)
-        {
-            bestScoreText.GetComponent<TextMeshProUGUI>().text = score.ToString();
-        }
-    }
 }

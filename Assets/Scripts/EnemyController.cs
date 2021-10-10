@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [Range(0,0.1f)]
+    [Range(0,1f)]
     public float skill;
 
     public Rigidbody ball;

@@ -6,10 +6,11 @@ using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
+    public TextMeshProUGUI bestScoreText;
     
     private void Start()
     {
-               
+        bestScoreText.text = DataManager.Instance.BestScore.ToString(); 
     }
     public void PlayMenu()
     {

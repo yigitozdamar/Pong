@@ -11,8 +11,6 @@ public class Ball : MonoBehaviour
    
     public static TextMeshProUGUI bestScoreEkran;
 
-    public int playerScore;
-    public int enemyScore;
 
     void Awake()
     {
@@ -20,13 +18,13 @@ public class Ball : MonoBehaviour
         transform.position = ballRb.position;
         //Cursor.visible = false;    
         Invoke("RandomizeBallPositionAtStart", 3.0f);        
-        playerScore = 0;
-        enemyScore = 0;
+        DataManager.Instance.PlayerScore = 0;
+        DataManager.Instance.EnemyScore = 0;
 
         GameObject obje = GameObject.Find("bestScoreText");
         bestScoreEkran = obje.GetComponent<TextMeshProUGUI>();
 
-        BestScore();
+        
         
     }
 
@@ -34,17 +32,17 @@ public class Ball : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("PlayerGoal"))
         {
-            playerScore++;
-            playerScoreText.text = "Score: " + playerScore;
-            DataManager.Instance.score++;
+            DataManager.Instance.PlayerScore++;
+            playerScoreText.text = "Score: " + DataManager.Instance.PlayerScore;
+            //DataManager.Instance.score++;
             ResetBall();
             Invoke("RandomizeBallPositionAtStart", 2.0f);
 
         }
         else if (collision.gameObject.CompareTag("EnemyGoal"))
         {
-            enemyScore++;
-            enemyScoreText.text = "Score: " + enemyScore;
+            DataManager.Instance.EnemyScore++;
+            enemyScoreText.text = "Score: " + DataManager.Instance.EnemyScore;
             ResetBall();
             Invoke("RandomizeBallPositionAtStart", 2.0f);
             
@@ -68,14 +66,5 @@ public class Ball : MonoBehaviour
     {
         ballRb.velocity = Vector3.zero;
         transform.position = Vector3.zero;
-    }
-    public void BestScore()
-    {
-        if (playerScore > PlayerPrefs.GetInt("HighScore",0))
-        {
-            PlayerPrefs.SetInt("HighScore", 0);
-            playerScoreText.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
-        }
-    }
-    
+    }       
 }
